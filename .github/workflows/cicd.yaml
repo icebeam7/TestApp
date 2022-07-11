@@ -28,7 +28,7 @@ jobs:
       - name: Setup iOS Provisioning Profiles
         uses: apple-actions/download-provisioning-profiles@v1
         with: 
-          bundle-id: 'com.icebeam.testapp'
+          bundle-id: 'com.icebeam.*'
           profile-type: 'IOS_APP_ADHOC'
           issuer-id: ${{ secrets.APPSTORE_ISSUER_ID }}
           api-key-id: ${{ secrets.APPSTORE_KEY_ID }}
