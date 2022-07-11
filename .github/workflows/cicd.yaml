@@ -42,10 +42,10 @@ jobs:
         
     - name: iOS Device
       run: |
-        cd Blank
+        cd TestApp
         nuget restore
-        msbuild Blank.iOS/Blank.iOS.csproj /verbosity:normal /t:Rebuild /p:Platform=iPhone /p:Configuration=Debug
+        msbuild TestApp.iOS/TestApp.iOS.csproj /verbosity:normal /t:Rebuild /p:Platform=iPhone /p:Configuration=Debug
     - uses: actions/upload-artifact@v2
       with:
         name: iOS Device App
-        path: Blank/Blank.iOS/bin/iPhone/Debug/Blank.iOS.app   
+        path: TestApp/TestApp.iOS/bin/iPhone/Debug/TestApp.iOS.app   
