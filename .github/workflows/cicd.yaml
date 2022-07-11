@@ -44,8 +44,16 @@ jobs:
       run: |
         nuget restore
         cd TestApp
-        msbuild TestApp.iOS/TestApp.iOS.csproj /verbosity:normal /t:Rebuild /p:Platform=iPhone /p:Configuration=Debug
+        msBuild TestApp.iOS/TestApp.iOS.csproj /verbosity:normal /t:Build /p:Configuration=Release /p:Platform=iPhone /p:BuildIpa=true
+        
     - uses: actions/upload-artifact@v2
       with:
         name: iOS Device App
-        path: TestApp/TestApp.iOS/bin/iPhone/Debug/TestApp.iOS.app   
+        path: TestApp/TestApp.iOS/bin/iPhone/Debug/TestApp.iOS.ipa   
+
+    - name: Setup App Center CLI
+      run: npm install --location=global appcenter-cli
+        
+    - name: Upload Android App to App Center
+      run: |
+          appcenter distribute release --file ./TestApp/TestApp.iOS/bin/iPhone/Debug/TestApp.iOS.ipa --app icebeam/TestApp --group Collaborators --token ${{ secrets.APP_CENTER_TOKEN }}
