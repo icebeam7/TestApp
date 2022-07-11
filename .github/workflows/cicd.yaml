@@ -42,8 +42,8 @@ jobs:
         
     - name: iOS Device
       run: |
-        cd TestApp
         nuget restore
+        cd TestApp
         msbuild TestApp.iOS/TestApp.iOS.csproj /verbosity:normal /t:Rebuild /p:Platform=iPhone /p:Configuration=Debug
     - uses: actions/upload-artifact@v2
       with:
